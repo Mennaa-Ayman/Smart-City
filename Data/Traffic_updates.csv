@@ -1,0 +1,17 @@
+road_id,source,destination,new_weight,timestamp,congestion_level
+1,Central_Hub,North_Station,12,2026-01-18T08:15:00,heavy
+2,Central_Hub,East_Market,5,2026-01-18T08:30:00,light
+3,Central_Hub,South_Terminal,15,2026-01-18T08:45:00,heavy
+4,North_Station,Airport,20,2026-01-18T09:00:00,moderate
+5,North_Station,University,10,2026-01-18T09:15:00,light
+6,East_Market,Hospital,4,2026-01-18T09:30:00,light
+7,East_Market,Shopping_Mall,14,2026-01-18T09:45:00,heavy
+8,South_Terminal,Port,18,2026-01-18T10:00:00,heavy
+9,South_Terminal,Industrial_Zone,12,2026-01-18T10:15:00,moderate
+10,Airport,University,25,2026-01-18T10:30:00,heavy
+11,University,Hospital,13,2026-01-18T10:45:00,moderate
+12,Shopping_Mall,Hospital,7,2026-01-18T11:00:00,light
+13,Hospital,Port,20,2026-01-18T11:15:00,heavy
+14,Port,Industrial_Zone,8,2026-01-18T11:30:00,light
+15,Industrial_Zone,Central_Hub,18,2026-01-18T11:45:00,moderate
+16,Shopping_Mall,Central_Hub,10,2026-01-18T12:00:00,light

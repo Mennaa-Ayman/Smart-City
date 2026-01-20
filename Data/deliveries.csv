@@ -1,0 +1,16 @@
+delivery_id,source,destination,weight_kg,deadline,priority,status,assigned_vehicle
+D001,Central_Hub,North_Station,50,2026-01-18T10:00:00,high,pending,
+D002,Central_Hub,East_Market,35,2026-01-18T11:30:00,medium,pending,
+D003,North_Station,Airport,120,2026-01-18T13:00:00,high,in_transit,V002
+D004,East_Market,Hospital,25,2026-01-18T12:00:00,urgent,in_transit,V003
+D005,Hospital,Shopping_Mall,45,2026-01-18T14:30:00,medium,pending,
+D006,South_Terminal,Port,200,2026-01-18T15:00:00,high,pending,
+D007,Port,Industrial_Zone,150,2026-01-18T16:30:00,medium,pending,
+D008,Industrial_Zone,Central_Hub,80,2026-01-18T17:00:00,medium,in_transit,V005
+D009,University,Shopping_Mall,40,2026-01-18T12:30:00,low,pending,
+D010,Airport,University,60,2026-01-18T13:45:00,high,pending,
+D011,Central_Hub,Port,500,2026-01-18T18:00:00,urgent,pending,
+D012,Hospital,Central_Hub,30,2026-01-18T11:00:00,medium,in_transit,V008
+D013,East_Market,North_Station,75,2026-01-18T14:00:00,high,pending,
+D014,Shopping_Mall,Industrial_Zone,95,2026-01-18T15:45:00,medium,pending,
+D015,South_Terminal,University,55,2026-01-18T16:15:00,low,pending,

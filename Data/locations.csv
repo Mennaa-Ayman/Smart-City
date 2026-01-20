@@ -1,0 +1,11 @@
+id,name,latitude,longitude,type
+1,Central_Hub,40.7128,-74.0060,hub
+2,North_Station,40.7580,-73.9855,station
+3,Airport,40.7769,-73.8740,airport
+4,University,40.8075,-73.9626,education
+5,East_Market,40.7505,-73.9972,market
+6,Hospital,40.7614,-73.9776,hospital
+7,Shopping_Mall,40.7489,-73.9680,retail
+8,South_Terminal,40.7195,-74.0024,terminal
+9,Port,40.7061,-74.0087,port
+10,Industrial_Zone,40.6895,-74.0117,industrial

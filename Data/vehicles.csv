@@ -1,0 +1,11 @@
+vehicle_id,name,capacity_kg,avg_speed_kmh,start_location,vehicle_type,status
+V001,Delivery_Van_01,500,50,Central_Hub,van,available
+V002,Delivery_Van_02,500,50,North_Station,van,available
+V003,Delivery_Van_03,500,50,East_Market,van,in_use
+V004,Truck_01,1500,40,South_Terminal,truck,available
+V005,Truck_02,1500,40,Port,truck,in_use
+V006,Motorcycle_01,100,60,Central_Hub,motorcycle,available
+V007,Motorcycle_02,100,60,Hospital,motorcycle,available
+V008,Bus_01,2000,35,Airport,bus,in_use
+V009,Cargo_Vehicle_01,3000,30,Industrial_Zone,cargo,available
+V010,Cargo_Vehicle_02,3000,30,South_Terminal,cargo,in_use

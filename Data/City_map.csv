@@ -1,0 +1,17 @@
+source,destination,distance,traffic_time
+Central_Hub,North_Station,5,8
+Central_Hub,East_Market,4,6
+Central_Hub,South_Terminal,6,10
+North_Station,Airport,12,18
+North_Station,University,8,12
+East_Market,Hospital,3,5
+East_Market,Shopping_Mall,7,11
+South_Terminal,Port,9,14
+South_Terminal,Industrial_Zone,8,13
+Airport,University,15,22
+University,Hospital,10,15
+Shopping_Mall,Hospital,5,8
+Hospital,Port,12,18
+Port,Industrial_Zone,6,9
+Industrial_Zone,Central_Hub,10,16
+Shopping_Mall,Central_Hub,8,12
