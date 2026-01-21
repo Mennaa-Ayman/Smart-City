@@ -14,26 +14,35 @@ for network analysis and pathfinding
 #ifndef ROADNETWORK_HPP
 #define ROADNETWORK_HPP
 
+#include "Utils.hpp"
 #include <unordered_map>
-#include <iostream>
-#include <vector>
-
-struct Edge {
-    int to;
-    double weight; // distance, time, congestion level
-};
-
-struct Node {
-    int id;
-    std::vector<Edge> edges;
-};
+#include <queue>
+#include <stack>
+#include <unordered_set>
 
 class RoadNetwork{
 private: 
-    std::unordered_map<int, std::vector<std::pair<int, double>>> roads;
-    
+    std::unordered_map<int, std::vector<std::pair<int, double>>> adjList; // <neighbor, weight>
+    std::unordered_map<int, Location> nodes;
 
 public:
+    // Helper Function to get Location ID by Name
+    int getLocationIdByName(const std::string& name, const std::vector<Location>& locations);
+
+    // Basic Graph Operations
+    void addEdge(int src, int dest, double weight);
+    void removeEdge(int nodeId);
+    void updateEdgeWeight(int src, int dest, double newWeight);
+
+    // Dijkstra's Algorithm
+    std::vector<int> shortestPath(int source, int destination);
+
+    // BFS Traversal
+    std::vector<int> bfs(Node* startNode);
+
+    // DFS Traversal
+    std::vector<int> dfs(Node* startNode);
+
     
 };
 
