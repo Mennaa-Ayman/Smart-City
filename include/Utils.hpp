@@ -6,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <cmath>
 
 // System Components
 struct Location {
@@ -54,6 +55,8 @@ public:
     static std::vector<Vehicle> loadVehicles();
     static std::vector<Delivery> loadDeliveries();
     static std::vector<TrafficEvent> loadTrafficUpdates();
+
+    double calculateDistance(double x1, double y1, double x2, double y2);
 };
 
 #endif // UTILS_HPP

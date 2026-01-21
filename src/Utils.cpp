@@ -36,6 +36,7 @@ std::vector<Edge> FileUtils::loadCityMap() {
 std::vector<Location> FileUtils::loadLocations() {
     std::vector<Location> locations;
     std::ifstream file("../Data/locations.csv");
+
     if (!file.is_open()) {
         std::cerr << "Error opening locations.csv" << std::endl;
         return locations;
@@ -117,4 +118,9 @@ std::vector<TrafficEvent> FileUtils::loadTrafficUpdates() {
             events.push_back(event);
     }
     return events;
+}
+
+// ================ Calculate Distance Function ================ //
+double FileUtils::calculateDistance(double x1, double y1, double x2, double y2) {
+    return std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
