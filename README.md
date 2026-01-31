@@ -74,22 +74,22 @@ SmartCity/
 ├── README.md                   # Project documentation
 │
 ├── Data/                       # Input data files (CSV format)
-│   ├── City_map.csv            # 16 roads with distance & traffic
-│   ├── locations.csv           # 10 delivery locations with coordinates
-│   ├── vehicles.csv            # 10 vehicles with capacity & speed
-│   ├── deliveries.csv          # 15 deliveries with deadlines & priority
-│   └── Traffic_updates.csv     # 16 traffic events
+│   ├── City_map.csv            
+│   ├── locations.csv           
+│   ├── vehicles.csv            
+│   ├── deliveries.csv         
+│   └── Traffic_updates.csv     
 │
-├── src/                        # Implementation files
-│   ├── Main.cpp                # Program entry point (11 lines)
-│   ├── SmartCitySystem.cpp     # System orchestration (300 lines)
+├── src/                        
+│   ├── Main.cpp                # Program entry point
+│   ├── SmartCitySystem.cpp     # System orchestration 
 │   ├── Network.cpp             # Graph algorithms (Dijkstra, BFS, DFS)
 │   ├── SpatialIndex.cpp        # QuadTree, BST, SegmentTree
 │   ├── DeliveryScheduler.cpp   # Priority queue & assignment logic
-│   ├── RouteOptimizer.cpp      # All optimization algorithms (450 lines)
+│   ├── RouteOptimizer.cpp      # Optimization algorithms 
 │   └── Utils.cpp               # CSV file I/O and utilities
 │
-├── include/                    # Header files
+├── include/                    
 │   ├── SmartCitySystem.hpp
 │   ├── Network.hpp
 │   ├── SpatialIndex.hpp
