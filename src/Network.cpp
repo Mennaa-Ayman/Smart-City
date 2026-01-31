@@ -1,4 +1,6 @@
 #include "Network.hpp"
+#include <limits>
+#include <algorithm>
 
 // ================ Get Location ID by Name Function ================ //
 int RoadNetwork::getLocationIdByName(const std::string& name, const std::vector<Location>& locations) {
@@ -28,8 +30,82 @@ void RoadNetwork::updateEdgeWeight(int src, int dest, double newWeight) {
 
 // ================ Dijkstra's Algorithm ================= //
 std::vector<int> RoadNetwork::shortestPath(int source, int destination) {
+    // Initialize distances and parent tracking
+    std::unordered_map<int, double> distance;
+    std::unordered_map<int, int> parent;
+    std::unordered_set<int> visited;
     
-    return {};
+    // Priority queue: (distance, node)
+    auto cmp = [](const std::pair<double, int>& a, const std::pair<double, int>& b) {
+        return a.first > b.first;  // Min-heap
+    };
+    std::priority_queue<std::pair<double, int>, std::vector<std::pair<double, int>>, 
+                       decltype(cmp)> pq(cmp);
+    
+    // Initialize all distances to infinity
+    for (const auto& node : adjList) {
+        distance[node.first] = std::numeric_limits<double>::max();
+        parent[node.first] = -1;
+    }
+    
+    // Set source distance to 0
+    distance[source] = 0.0;
+    pq.push({0.0, source});
+    
+    // Dijkstra's main loop
+    while (!pq.empty()) {
+        auto [curr_dist, curr_node] = pq.top();
+        pq.pop();
+        
+        // Skip if already visited
+        if (visited.count(curr_node)) {
+            continue;
+        }
+        
+        visited.insert(curr_node);
+        
+        // If we reached destination, we can stop early
+        if (curr_node == destination) {
+            break;
+        }
+        
+        // Skip if this distance is outdated
+        if (curr_dist > distance[curr_node]) {
+            continue;
+        }
+        
+        // Relax all neighbors
+        if (adjList.count(curr_node)) {
+            for (const auto& [neighbor, weight] : adjList[curr_node]) {
+                double newDist = distance[curr_node] + weight;
+                
+                // Found shorter path
+                if (newDist < distance[neighbor]) {
+                    distance[neighbor] = newDist;
+                    parent[neighbor] = curr_node;
+                    pq.push({newDist, neighbor});
+                }
+            }
+        }
+    }
+    
+    // Reconstruct path from destination to source
+    std::vector<int> path;
+    if (distance[destination] == std::numeric_limits<double>::max()) {
+        // No path exists
+        return path;
+    }
+    
+    int curr = destination;
+    while (curr != -1) {
+        path.push_back(curr);
+        curr = parent[curr];
+    }
+    
+    // Reverse to get path from source to destination
+    std::reverse(path.begin(), path.end());
+    
+    return path;
 }
 
 // ================ BFS Traversal ================= //
