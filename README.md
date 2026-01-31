@@ -8,8 +8,7 @@ A comprehensive logistics platform implementing advanced algorithms and data str
 - [Core Algorithms](#core-algorithms)
 - [Data Structures](#data-structures)
 - [System Components](#system-components)
-- [Installation & Setup](#installation--setup)
-- [Running the System](#running-the-system)
+- [How to run](#how-to-run)
 
 ## Implemented Features
 
@@ -167,7 +166,7 @@ class PriorityQueue {
 | **System Integration** | SmartCitySystem.hpp/cpp | 5-phase delivery pipeline orchestration |
 | **Utilities** | Utils.hpp/cpp | CSV loading, calculations |
 
-## Installation & Setup
+## How to run
 
 ### Prerequisites
 - **C++ Compiler**: C++17 or higher 
