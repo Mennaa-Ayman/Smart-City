@@ -170,10 +170,10 @@ class PriorityQueue {
 ## Installation & Setup
 
 ### Prerequisites
-- **C++ Compiler**: C++17 or higher (MSVC, GCC, or Clang)
+- **C++ Compiler**: C++17 or higher 
 - **CMake**: Version 3.10 or higher
 
-### Build Instructions
+### Build 
 ```bash
 cd d:\Software\Advanced\SmartCity
 mkdir build
@@ -182,7 +182,7 @@ cmake ..
 cmake --build . --config Release
 ```
 
-## Running the System
+### Run
 
 ```bash
 cd d:\Software\Advanced\SmartCity
