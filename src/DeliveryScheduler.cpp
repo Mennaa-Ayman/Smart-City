@@ -66,7 +66,7 @@ bool DeliveryScheduler::assignDeliveryToVehicle(const std::string& deliveryId,
                                                  const std::vector<Location>& locations) {
     // Find the delivery in pending queue
     if (pendingDeliveries.empty()) {
-        std::cerr << "No pending deliveries to assign" << std::endl;
+        // Silently return if no pending deliveries
         return false;
     }
     
@@ -74,8 +74,7 @@ bool DeliveryScheduler::assignDeliveryToVehicle(const std::string& deliveryId,
     Delivery delivery = pendingDeliveries.pop();
     
     if (delivery.id != deliveryId) {
-        std::cerr << "Delivery ID mismatch" << std::endl;
-        // Re-add the delivery back
+        // Silently re-add delivery if ID mismatch
         pendingDeliveries.push(delivery);
         return false;
     }
@@ -90,14 +89,14 @@ bool DeliveryScheduler::assignDeliveryToVehicle(const std::string& deliveryId,
     }
     
     if (!assignedVehicle) {
-        std::cerr << "Vehicle not found" << std::endl;
+        // Silently re-add delivery if vehicle not found
         pendingDeliveries.push(delivery);
         return false;
     }
     
     // Check capacity
     if (!hasCapacity(*assignedVehicle, delivery)) {
-        std::cerr << "Vehicle capacity insufficient" << std::endl;
+        // Silently re-add if capacity insufficient
         pendingDeliveries.push(delivery);
         return false;
     }
@@ -106,7 +105,7 @@ bool DeliveryScheduler::assignDeliveryToVehicle(const std::string& deliveryId,
     std::vector<int> route = calculateOptimalRoute(delivery.source, delivery.destination, locations);
     
     if (route.empty()) {
-        std::cerr << "Cannot calculate route" << std::endl;
+        // Silently re-add if route cannot be calculated
         pendingDeliveries.push(delivery);
         return false;
     }
