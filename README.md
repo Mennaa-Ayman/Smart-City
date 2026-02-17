@@ -58,8 +58,8 @@ A comprehensive logistics platform implementing advanced algorithms and data str
 
 ### 8. **System Integration & Architecture**
 - **SmartCityDeliverySystem**: Unified system orchestration class
-- **SmartCitySystem.cpp/hpp**: Business logic implementation (300 lines)
-- **Main.cpp**: Clean entry point (11 lines)
+- **SmartCitySystem.cpp/hpp**: Business logic implementation
+- **Main.cpp**: Entry point 
 - 5-phase delivery optimization pipeline:
   1. Pathfinding demonstration (Dijkstra)
   2. Spatial queries (QuadTree radius search)
