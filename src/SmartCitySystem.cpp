@@ -132,7 +132,6 @@ void SmartCityDeliverySystem::runDeliveryOptimization() {
     int assignedCount = 0;
     for (size_t i = 0; i < selectedDeliveries.size() && i < vehicles.size(); i++) {
         bool assigned = scheduler->assignDeliveryToVehicle(
-            selectedDeliveries[i].id,
             vehicles[i].id,
             vehicles,
             locations
