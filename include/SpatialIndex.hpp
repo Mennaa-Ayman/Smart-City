@@ -14,13 +14,13 @@ Spatial Indexing (Trees)
 #include "Utils.hpp"
 
 // ==================== QUADTREE CLASS ====================
-// Partitions city space into 4 quadrants for efficient spatial queries
+// Divides city space into 4 quadrants for efficient spatial queries
 class QuadTree {
 private:
     struct Node {
-        double x, y, width, height;                    // quadrant bounds
-        std::vector<Location*> locations;              // locations in this node
-        Node* children[4];                             // NW, NE, SW, SE
+        double x, y, width, height;                     // quadrant bounds
+        std::vector<Location*> locations;               // locations in this node
+        Node* children[4];                              // NW, NE, SW, SE
         Node(double cx, double cy, double w, double h) 
             : x(cx), y(cy), width(w), height(h) { 
             for (int i = 0; i < 4; i++) children[i] = nullptr; 

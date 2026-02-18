@@ -26,8 +26,10 @@ void QuadTree::insert(Node* node, Location* loc) {
     
     // Check bounds
     double hw = node->width / 2, hh = node->height / 2;
+
+    // Location outside bounding box
     if (loc->longitude < node->x - hw || loc->longitude > node->x + hw ||
-        loc->latitude < node->y - hh || loc->latitude > node->y + hh) return;
+        loc->latitude < node->y - hh || loc->latitude > node->y + hh) return; 
     
     // Leaf node - add location or subdivide
     if (!node->children[0]) {
@@ -35,7 +37,7 @@ void QuadTree::insert(Node* node, Location* loc) {
             node->locations.push_back(loc);
             return;
         }
-        // Subdivide into 4 quadrants
+        // if capacity exceeded Subdivide into 4 quadrants
         node->children[0] = new Node(node->x - hw/2, node->y + hh/2, hw, hh); // NW
         node->children[1] = new Node(node->x + hw/2, node->y + hh/2, hw, hh); // NE
         node->children[2] = new Node(node->x - hw/2, node->y - hh/2, hw, hh); // SW
@@ -45,17 +47,11 @@ void QuadTree::insert(Node* node, Location* loc) {
         for (auto loc : node->locations) {
             for (int i = 0; i < 4; i++) insert(node->children[i], loc);
         }
-        node->locations.clear();
+        node->locations.clear(); //clear node (now internal node)
     }
     
     // Insert into children
     for (int i = 0; i < 4; i++) insert(node->children[i], loc);
-}
-
-std::vector<Location*> QuadTree::radiusSearch(double centerX, double centerY, double radius) {
-    std::vector<Location*> result;
-    radiusSearch(root, centerX, centerY, radius, result);
-    return result;
 }
 
 void QuadTree::radiusSearch(Node* node, double cx, double cy, double r, std::vector<Location*>& result) {
@@ -81,9 +77,11 @@ void QuadTree::radiusSearch(Node* node, double cx, double cy, double r, std::vec
     }
 }
 
-Location* QuadTree::findNearest(double x, double y) {
-    double minDist = std::numeric_limits<double>::max();
-    return findNearest(root, x, y, minDist, nullptr);
+// Functions for radius search without passing result vector
+std::vector<Location*> QuadTree::radiusSearch(double centerX, double centerY, double radius) {
+    std::vector<Location*> result;
+    radiusSearch(root, centerX, centerY, radius, result);
+    return result;
 }
 
 Location* QuadTree::findNearest(Node* node, double x, double y, double& minDist, Location* current) {
@@ -104,6 +102,12 @@ Location* QuadTree::findNearest(Node* node, double x, double y, double& minDist,
         current = findNearest(node->children[i], x, y, minDist, current);
     }
     return current;
+}
+
+// Find Nearest location to given coordinates
+Location* QuadTree::findNearest(double x, double y) {
+    double minDist = std::numeric_limits<double>::max();
+    return findNearest(root, x, y, minDist, nullptr);
 }
 
 // ==================== BINARY SEARCH TREE IMPLEMENTATION ====================
