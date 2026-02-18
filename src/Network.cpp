@@ -29,22 +29,25 @@ void RoadNetwork::updateEdgeWeight(int src, int dest, double newWeight) {
 }
 
 // ================ Dijkstra's Algorithm ================= //
+// Returns shortest path as a vector of node IDs from source to destination
+
 std::vector<int> RoadNetwork::shortestPath(int source, int destination) {
-    // Initialize distances and parent tracking
     std::unordered_map<int, double> distance;
     std::unordered_map<int, int> parent;
     std::unordered_set<int> visited;
     
-    // Priority queue: (distance, node)
+    // Min-heap Priority queue <distance = double , node=int>
     auto cmp = [](const std::pair<double, int>& a, const std::pair<double, int>& b) {
-        return a.first > b.first;  // Min-heap
+        return a.first > b.first; // true if distance a>b
     };
+
+    // Priority queue: element type = pair, container = vector, cmp -> min heao
     std::priority_queue<std::pair<double, int>, std::vector<std::pair<double, int>>, 
                        decltype(cmp)> pq(cmp);
     
     // Initialize all distances to infinity
     for (const auto& node : adjList) {
-        distance[node.first] = std::numeric_limits<double>::max();
+        distance[node.first] = std::numeric_limits<double>::max(); 
         parent[node.first] = -1;
     }
     
@@ -108,7 +111,7 @@ std::vector<int> RoadNetwork::shortestPath(int source, int destination) {
     return path;
 }
 
-// ================ BFS Traversal ================= //
+// ================ BFS Traversal = Queue ================= //
 std::vector<int> RoadNetwork::bfs(Node* startNode) {
     std::queue<int> q;
     std::vector<int> r;
@@ -133,7 +136,7 @@ std::vector<int> RoadNetwork::bfs(Node* startNode) {
     }
     return r;
 }   
-// ================ DFS Traversal ================= //
+// ================ DFS Traversal = Stack ================= //
 std::vector<int> RoadNetwork::dfs(Node* startNode) {
     std::stack <int> s;
     std::vector<int> r;
