@@ -60,43 +60,33 @@ double DeliveryScheduler::calculateEstimatedTime(const std::vector<int>& route) 
     return totalTime;
 }
 
-bool DeliveryScheduler::assignDeliveryToVehicle(const std::string& deliveryId, 
-                                                 int vehicleId,
-                                                 const std::vector<Vehicle>& vehicles,
-                                                 const std::vector<Location>& locations) {
-    // Find the delivery in pending queue
-    if (pendingDeliveries.empty()) {
-        // Silently return if no pending deliveries
-        return false;
-    }
+bool DeliveryScheduler::assignDeliveryToVehicle(int vehicleId, const std::vector<Vehicle>& vehicles, const std::vector<Location>& locations) {
+
+    if (pendingDeliveries.empty())  return false;
     
-    // Get the delivery
     Delivery delivery = pendingDeliveries.pop();
     
-    if (delivery.id != deliveryId) {
-        // Silently re-add delivery if ID mismatch
-        pendingDeliveries.push(delivery);
-        return false;
-    }
-    
     // Find vehicle
-    Vehicle* assignedVehicle = nullptr;
+    Vehicle assignedVehicle;
+    bool vehicleFound = false;
     for (const auto& v : vehicles) {
         if (v.id == vehicleId) {
-            assignedVehicle = const_cast<Vehicle*>(&v);
+            assignedVehicle = v;
+            vehicleFound = true;
             break;
         }
     }
     
-    if (!assignedVehicle) {
-        // Silently re-add delivery if vehicle not found
+    if (!vehicleFound) {
+        std::cerr << "ERROR: Vehicle not found with ID " << vehicleId << ". Re-queueing delivery." << std::endl;
         pendingDeliveries.push(delivery);
         return false;
     }
     
     // Check capacity
-    if (!hasCapacity(*assignedVehicle, delivery)) {
-        // Silently re-add if capacity insufficient
+    if (!hasCapacity(assignedVehicle, delivery)) {
+        std::cerr << "ERROR: Vehicle " << vehicleId << " has insufficient capacity (available: " 
+                  << assignedVehicle.capacity << ", required: " << delivery.weight << "). Re-queueing delivery." << std::endl;
         pendingDeliveries.push(delivery);
         return false;
     }
@@ -105,31 +95,32 @@ bool DeliveryScheduler::assignDeliveryToVehicle(const std::string& deliveryId,
     std::vector<int> route = calculateOptimalRoute(delivery.source, delivery.destination, locations);
     
     if (route.empty()) {
-        // Silently re-add if route cannot be calculated
+        std::cerr << "ERROR: Cannot calculate route from " << delivery.source << " to " 
+                  << delivery.destination << ". Re-queueing delivery." << std::endl;
         pendingDeliveries.push(delivery);
         return false;
     }
     
     // Create assignment record
     DeliveryAssignment assignment;
-    assignment.deliveryId = deliveryId;
+    assignment.deliveryId = delivery.id;
     assignment.vehicleId = vehicleId;
     assignment.route = route;
     assignment.estimatedTime = calculateEstimatedTime(route);
     assignment.status = "in-transit";
     
     // Store assignment
-    assignedDeliveries.insert(deliveryId, assignment);
+    assignedDeliveries.insert(delivery.id, assignment);
     
     // Add to vehicle's delivery list
     std::vector<std::string> vehicleDeliv;
     if (!vehicleDeliveries.find(vehicleId, vehicleDeliv)) {
         vehicleDeliv.clear();
     }
-    vehicleDeliv.push_back(deliveryId);
+    vehicleDeliv.push_back(delivery.id);
     vehicleDeliveries.insert(vehicleId, vehicleDeliv);
     
-    std::cout << "Delivery " << deliveryId << " assigned to vehicle " << vehicleId 
+    std::cout << "Delivery " << delivery.id << " assigned to vehicle " << vehicleId 
               << " with estimated time: " << assignment.estimatedTime << " minutes" << std::endl;
     
     return true;

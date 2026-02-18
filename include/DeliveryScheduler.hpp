@@ -17,7 +17,7 @@ Responsibilities:
 #include "SpatialIndex.hpp"
 #include "Network.hpp"
 
-// ==================== Priority Queue Template ====================
+// ==================== Geeneric Priority Queue using Template ==================== //
 template<typename T> 
 class PriorityQueue { 
 private:
@@ -124,24 +124,14 @@ struct DeliveryAssignment {
 // ==================== Delivery Scheduler Class ====================
 class DeliveryScheduler {
 private:
-    // Priority queue for pending deliveries
     PriorityQueue<Delivery> pendingDeliveries;
-    
-    // Hash table to track assigned deliveries
     HashTable<std::string, DeliveryAssignment> assignedDeliveries;
-    
-    // Hash table for vehicle assignments
     HashTable<int, std::vector<std::string>> vehicleDeliveries;
-    
-    // Reference to road network for pathfinding
     RoadNetwork* roadNetwork;
-    
-    // Reference to spatial index for nearest location queries
     QuadTree* spatialIndex;
     
-    // Priority comparator
+    // Priority comparator - levels: "High" > "Medium" > "Low"
     static bool compareDeliveries(const Delivery& d1, const Delivery& d2) {
-        // Priority levels: "High" > "Medium" > "Low"
         auto getPriorityLevel = [](const std::string& p) -> int {
             if (p == "High") return 3;
             if (p == "Medium") return 2;
@@ -164,27 +154,20 @@ private:
     double calculateEstimatedTime(const std::vector<int>& route);
 
 public:
-    // Constructor
     DeliveryScheduler(RoadNetwork* network, QuadTree* spatial)
         : pendingDeliveries(compareDeliveries), roadNetwork(network), spatialIndex(spatial) {}
-    
-    // Add new delivery to queue
+
     void addDelivery(const Delivery& delivery);
-    
-    // Get next highest priority delivery
+
     Delivery getNextDelivery();
-    
-    // Assign delivery to vehicle
-    bool assignDeliveryToVehicle(const std::string& deliveryId, int vehicleId, 
-                                  const std::vector<Vehicle>& vehicles,
+    bool assignDeliveryToVehicle(int vehicleId, const std::vector<Vehicle>& vehicles,
                                   const std::vector<Location>& locations);
-    
-    // Get route for a delivery (find optimal path)
+
     std::vector<int> calculateOptimalRoute(const std::string& source, 
                                            const std::string& destination,
                                            const std::vector<Location>& locations);
     
-    // Reassign delivery (handles priority changes)
+    // handles priority changes
     void reassignDelivery(const std::string& deliveryId, const Delivery& updatedDelivery);
     
     // Mark delivery as completed
