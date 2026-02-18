@@ -3,12 +3,23 @@
 A comprehensive logistics platform implementing advanced algorithms and data structures for efficient package delivery route optimization across an urban network.
 
 ## Table of Contents
+- [System Components](#system-components)
 - [Implemented Features](#implemented-features)
 - [Project Structure](#project-structure)
 - [Core Algorithms](#core-algorithms)
 - [Data Structures](#data-structures)
-- [System Components](#system-components)
-- [How to run](#how-to-run)
+- [How to run](#how-to-run) 
+
+## System Components
+
+| Component | Files | Purpose |
+|-----------|-------|---------|
+| **City Map Manager** | Network.hpp/cpp | Graph algorithms (Dijkstra, BFS, DFS, MST, Bellman-Ford) |
+| **Entity Manager** | HashTable.hpp | O(1) entity lookup (locations, vehicles, deliveries) with separate chaining |
+| **Spatial Query Engine** | SpatialIndex.hpp/cpp | QuadTree, BST, SegmentTree |
+| **Delivery Scheduler** | DeliveryScheduler.hpp/cpp | Template Priority queue with binary heap, vehicle assignment |
+| **Route Optimizer** | RouteOptimizer.hpp/cpp | Greedy algorithms, sorting (Merge/Quick), divide & conquer |
+| **Data Processing Module** | TrafficManagement.hpp/cpp, PackageTracking.hpp/cpp | Traffic management, package tracking, analytics, conflict resolution |
 
 ## Implemented Features
 
@@ -72,6 +83,7 @@ A comprehensive logistics platform implementing advanced algorithms and data str
 SmartCity/
 ├── CMakeLists.txt              # CMake build configuration
 ├── README.md                   # Project documentation
+├── UNIMPLEMENTED_FEATURES.txt  # Tracking of remaining features to implement
 │
 ├── Data/                       # Input data files (CSV format)
 │   ├── City_map.csv            
@@ -83,7 +95,7 @@ SmartCity/
 ├── src/                        
 │   ├── Main.cpp                # Program entry point
 │   ├── SmartCitySystem.cpp     # System orchestration 
-│   ├── Network.cpp             # Graph algorithms (Dijkstra, BFS, DFS)
+│   ├── Network.cpp             # Graph algorithms (Dijkstra, BFS, DFS, MST, Bellman-Ford)
 │   ├── SpatialIndex.cpp        # QuadTree, BST, SegmentTree
 │   ├── DeliveryScheduler.cpp   # Priority queue & assignment logic
 │   ├── RouteOptimizer.cpp      # Optimization algorithms 
@@ -154,38 +166,32 @@ class PriorityQueue {
 };
 ```
 
-## System Components
-
-| Component | Files | Purpose |
-|-----------|-------|---------|
-| **Network Manager** | Network.hpp/cpp | Graph algorithms, road network |
-| **Spatial Indexing** | SpatialIndex.hpp/cpp | QuadTree, nearest neighbor, radius search |
-| **Hash Table Registry** | HashTable.hpp | O(1) entity lookup (locations, vehicles, deliveries) |
-| **Delivery Scheduler** | DeliveryScheduler.hpp/cpp | Priority queue, vehicle assignment |
-| **Route Optimizer** | RouteOptimizer.hpp/cpp | All 8 optimization algorithms |
-| **System Integration** | SmartCitySystem.hpp/cpp | 5-phase delivery pipeline orchestration |
-| **Utilities** | Utils.hpp/cpp | CSV loading, calculations |
-
 ## How to run
 
 ### Prerequisites
-- **C++ Compiler**: C++17 or higher 
-- **CMake**: Version 3.10 or higher
+- **C++ 17**
+- **CMake 3.10**
 
-### Build 
+### 1. Clone the rep
 ```bash
-cd d:\Software\Advanced\SmartCity
+git clone <repository_url>
+
+# Navigate into the project directory
+cd '.\Smart-City-Delivery-System'
+```
+
+### 2. Build 
+```bash
 mkdir build
 cd build
 cmake ..
 cmake --build . --config Release
 ```
 
-### Run
+### 3.Run 
 
 ```bash
-cd d:\Software\Advanced\SmartCity
-.\SmartCity.exe
+.\Smart-City-Delivery-System\SmartCity.exe
 ```
 
 
