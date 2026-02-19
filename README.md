@@ -19,7 +19,7 @@ A comprehensive logistics platform implementing advanced algorithms and data str
 | **Spatial Query Engine** | SpatialIndex.hpp/cpp | QuadTree, BST, SegmentTree |
 | **Delivery Scheduler** | DeliveryScheduler.hpp/cpp | Template Priority queue with binary heap, vehicle assignment |
 | **Route Optimizer** | RouteOptimizer.hpp/cpp | Greedy algorithms, sorting (Merge/Quick), divide & conquer |
-| **Data Processing Module** | TrafficManagement.hpp/cpp, PackageTracking.hpp/cpp | Traffic management, package tracking, analytics, conflict resolution |
+| **Data Processing Module** | Utils.hpp/cpp | load city map, locations, vehicles and deliveries |
 
 ## Implemented Features
 
