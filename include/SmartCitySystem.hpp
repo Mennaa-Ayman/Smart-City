@@ -37,6 +37,7 @@ private:
     // Spatial indexing
     QuadTree* spatialIndex;
     BST deliveryDeadlineTree;
+    SegmentTree* trafficSegmentTree;
     
     // Delivery management
     DeliveryScheduler* scheduler;
@@ -62,12 +63,21 @@ private:
     void loadData();
     void initializeSpatialIndex();
     void buildRoadNetwork();
+    std::vector<int> getAllLocationIds() const;
     
     // Demonstration methods
     void runDeliveryOptimization();
     void demonstratePathfinding();
+    void demonstrateGraphTraversal();        // BFS / DFS
+    void demonstrateMST();                   // Kruskal's Algorithm
+    void demonstrateBellmanFord();           // Toll-discount / negative-weight routing
+    void demonstrateTopologicalSort();       // One-way street planning
     void demonstrateSpatialQueries();
+    void demonstrateDeadlineQueries();       // BST earliest-deadline / range search
+    void demonstrateTrafficAnalysis();       // Segment Tree range queries
     void demonstrateClosestPairAnalysis();
+    void demonstrateSortingAndSearch();      // Quick Sort + Binary Search
+    void demonstrateGreedyAndKnapsack();     // Greedy next-hop + Fractional Knapsack
     void displayAnalytics();
 };
 
