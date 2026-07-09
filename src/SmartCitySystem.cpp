@@ -167,9 +167,8 @@ void SmartCityDeliverySystem::runDeliveryOptimization() {
     int maxAttempts = totalToAssign * 2; // guard against looping if a delivery can't be placed
     
     while (scheduler->getPendingCount() > 0 && vehicleIdx < vehicles.size() && attempts < maxAttempts) {
-        Delivery next = scheduler->getNextDelivery(); // peek the highest-priority delivery
         bool assigned = scheduler->assignDeliveryToVehicle(
-            next.id, vehicles[vehicleIdx].id, vehicles, locations
+            vehicles[vehicleIdx].id, vehicles, locations
         );
         if (assigned) assignedCount++;
         vehicleIdx++;
