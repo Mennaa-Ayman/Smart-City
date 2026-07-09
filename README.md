@@ -16,7 +16,7 @@ A comprehensive logistics platform implementing advanced algorithms and data str
 |-----------|-------|---------|
 | **City Map Manager** | Network.hpp/cpp | Graph algorithms (Dijkstra, BFS, DFS, MST, Bellman-Ford) |
 | **Entity Manager** | HashTable.hpp | O(1) entity lookup (locations, vehicles, deliveries) with separate chaining |
-| **Spatial Query Engine** | SpatialIndex.hpp/cpp | QuadTree, BST, SegmentTree |
+| **Spatial Query Engine** | SpatialIndex.hpp/cpp | QuadTree, BST |
 | **Delivery Scheduler** | DeliveryScheduler.hpp/cpp | Template Priority queue with binary heap, vehicle assignment |
 | **Route Optimizer** | RouteOptimizer.hpp/cpp | Greedy algorithms, sorting (Merge/Quick), divide & conquer |
 | **Data Processing Module** | Utils.hpp/cpp | load city map, locations, vehicles and deliveries |
@@ -44,7 +44,6 @@ A comprehensive logistics platform implementing advanced algorithms and data str
 - 4-way geographic partitioning for efficient location queries
 - O(log N) nearest-neighbor searches
 - Radius search to find all locations within distance threshold
-- Supports dynamic insertion and spatial range queries
 
 ### 5. **Priority Queue with Binary Heap**
 - Multi-criteria sorting: deadline primary, priority level secondary
@@ -122,7 +121,6 @@ SmartCity/
 | **DFS** | O(V+E) | Network structure exploration |
 | **Binary Heap (Priority Queue)** | O(log N) | Delivery scheduling by priority |
 | **QuadTree** | O(log N) | Spatial location indexing & queries |
-| **Merge Sort** | O(N log N) | Stable multi-criteria sorting |
 | **Quick Sort** | O(N log N) avg | Fast in-place sorting |
 | **Binary Search** | O(log N) | Search sorted schedules |
 | **Closest Pair (D&C)** | O(N log N) | Find nearest delivery locations |
@@ -172,28 +170,28 @@ class PriorityQueue {
 - **C++ 17**
 - **CMake 3.10**
 
-### 1. Clone the rep
+### 1. Clone the repository
 ```bash
 git clone <repository_url>
 
 # Navigate into the project directory
-cd '.\Smart-City-Delivery-System'
+cd SmartCity
 ```
 
-### 2. Build 
+### 2. Configure and build
+
 ```bash
 mkdir build
-cd build
-cmake ..
-cmake --build . --config Release
+cmake -S . -B build -G Ninja
+cmake --build build
 ```
 
-### 3.Run 
+### 3. Run
+
+From the project root:
 
 ```bash
-.\Smart-City-Delivery-System\SmartCity.exe
+./SmartCity
 ```
-
-
 
 
