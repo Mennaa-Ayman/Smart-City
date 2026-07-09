@@ -81,9 +81,7 @@ A comprehensive logistics platform implementing advanced algorithms and data str
 ```
 SmartCity/
 ├── CMakeLists.txt              # CMake build configuration
-├── README.md                   # Project documentation
-├── UNIMPLEMENTED_FEATURES.txt  # Tracking of remaining features to implement
-│
+├── README.md                   # Project documentation│
 ├── Data/                       # Input data files (CSV format)
 │   ├── City_map.csv            
 │   ├── locations.csv           
